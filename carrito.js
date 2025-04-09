@@ -107,8 +107,10 @@ function formatNumber(number) {
 function loadCart() {
     const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
     const cartItemsList = document.getElementById('cart-items-list');
+    const cartCounter = document.getElementById('cart-counter');
     const cartTotal = document.getElementById('cart-total');
-    const opcionesPago = document.getElementById('opcionesPago'); // El <select> de opciones de pago
+    const opcionesPago = document.getElementById('opcionesPago');
+    const clearCartButton = document.getElementById('clear-cart-button');
     let total = 0;
 
     // LIMPIAR LA LISTA DE PRODUCTOS EN EL CARRITO
@@ -118,24 +120,39 @@ function loadCart() {
     if (cartItems.length === 0) {
         const imageUrl = 'img/iconos/carrito.png';
         cartItemsList.innerHTML = `
-        <img src="${imageUrl}" alt="Imagen sin productos" id="carritoimagen">
-        <p>No hay productos en tu carrito.</p>
-        <button id="volveraproductos" onclick="window.location.href='index.html'">Añadir productos</button>
+            <img src="${imageUrl}" alt="Imagen sin productos" id="carritoimagen">
+            <p>No hay productos en tu carrito.</p>
+            <button id="volveraproductos" onclick="window.location.href='index.html'">Añadir productos</button>
         `;
 
-        // Deshabilitar el <select> de opciones de pago si el carrito está vacío
+        // Ocultar el contador de productos
+        if (cartCounter) {
+            cartCounter.textContent = '';
+        }
+
+        // Reiniciar el total del carrito
+        if (cartTotal) {
+            cartTotal.textContent = '';
+        }
+
+        // Deshabilitar el select de opciones de pago
         if (opcionesPago) {
-            opcionesPago.disabled = true; // Deshabilitar el select de opciones de pago
+            opcionesPago.disabled = true;
+        }
+
+        // Ocultar el botón de limpiar carrito
+        if (clearCartButton) {
+            clearCartButton.style.display = 'none';
         }
     } else {
         // MOSTRAR PRODUCTOS DEL CARRITO
         cartItems.forEach((product, index) => {
             const price = isNaN(parseFloat(product.price)) ? 0 : parseFloat(product.price);
             const quantity = isNaN(parseInt(product.quantity)) ? 0 : parseInt(product.quantity);
-            const subtotal = price * quantity; // Calcular el subtotal del producto
-            const imageUrl = product.image || 'img/Productos/default.jpg'; // Imagen alternativa
+            const subtotal = price * quantity;
+            const imageUrl = product.image || 'img/Productos/default.jpg';
 
-            // Crear una lista de los checkboxes seleccionados en checkboxes
+            // Crear una lista de los checkboxes seleccionados
             const selectedOptions = `
                 ${product.selectedSizes && product.selectedSizes.length > 0 ? `<p><strong>Tamaño:</strong> ${product.selectedSizes.join(', ')}</p>` : ''}
                 ${product.selectedFlavors && product.selectedFlavors.length > 0 ? `<p><strong>Sabor/es:</strong> ${product.selectedFlavors.join(', ')}</p>` : ''}
@@ -144,73 +161,81 @@ function loadCart() {
                 <p><strong>Indicaciones: </strong><span class="instructions-text">${product.instructions || 'Ninguna'}</span></p>
             `;
 
-    // Crear el contenedor del producto
-    const itemElement = document.createElement('div');
-    itemElement.classList.add('cart-item');
-    itemElement.innerHTML = `
-        <div id="contenedordeimagencarrito">
-            <img src="${imageUrl}" alt="${product.name}" class="cart-product-image"> <!-- Imagen del producto -->
-        </div>
-        <div id="nombre_precio_intrucciones">
-            <!-- Información del producto -->
-            <p><strong>${product.name} - $${formatNumber(price)}</strong></p>
-            <p><strong>Cantidad: </strong>${quantity}</p>
-            <p><strong>Indicaciones: </strong>${product.instructions || ''}</p>
-        </div>
-        
-        <!-- Contenedor de acciones -->
-        <div class="action-container">
-        <img id="basura" src="img/iconos/basura.png" alt="Eliminar" onclick="removeItem(${index}, this)">
+            // Crear el contenedor del producto
+            const itemElement = document.createElement('div');
+            itemElement.classList.add('cart-item');
+            itemElement.innerHTML = `
+                <div id="contenedordeimagencarrito">
+                    <img src="${imageUrl}" alt="${product.name}" class="cart-product-image">
+                </div>
+                <div id="nombre_precio_intrucciones">
+                    <p><strong>${product.name} - $${formatNumber(price)}</strong></p>
+                    <p><strong>Cantidad: </strong>${quantity}</p>
+                    <p><strong>Indicaciones: </strong>${product.instructions || ''}</p>
+                </div>
+                <div class="action-container">
+                    <img id="basura" src="img/iconos/basura.png" alt="Eliminar" onclick="removeItem(${index}, this)">
+                    <div class="subtotal-popup">
+                        <p>$${formatNumber(subtotal)}</p>
+                    </div>
+                </div>
+            `;
 
-            <div class="subtotal-popup">
-                <p>$${formatNumber(subtotal)}</p>
-            </div>
-        </div>
-    `;
-    
-// Crear el botón "Ver más detalles"
-const detailsButton = document.createElement('button');
-detailsButton.classList.add('toggle-details-btn');
-detailsButton.innerHTML = `
-    <span>Detalles del Producto</span>
-    <img src="img/iconos/arrow-down.png" alt="Flecha" class="arrow-icon" >
-`; // Agregar texto y flecha como imagen
-detailsButton.onclick = function () {
-    toggleDetails(detailsElement, detailsButton);
-};
+            // Crear el botón "Ver más detalles"
+            const detailsButton = document.createElement('button');
+            detailsButton.classList.add('toggle-details-btn');
+            detailsButton.innerHTML = `
+                <span>Detalles del Producto</span>
+                <img src="img/iconos/arrow-down.png" alt="Flecha" class="arrow-icon">
+            `;
+            detailsButton.onclick = function () {
+                toggleDetails(detailsElement, detailsButton);
+            };
 
-    // Crear el contenedor de detalles (inicialmente oculto)
-    const detailsElement = document.createElement('div');
-    detailsElement.classList.add('product-details');
-    detailsElement.style.display = 'none'; // Ocultar por defecto
-    detailsElement.innerHTML = `
-        ${selectedOptions} <!-- Mostrar los checkboxes seleccionados -->
-    `;
+            // Crear el contenedor de detalles (inicialmente oculto)
+            const detailsElement = document.createElement('div');
+            detailsElement.classList.add('product-details');
+            detailsElement.style.display = 'none';
+            detailsElement.innerHTML = `${selectedOptions}`;
 
-    // Agregar el producto al carrito
-    cartItemsList.appendChild(itemElement);
+            // Agregar el producto al carrito
+            cartItemsList.appendChild(itemElement);
 
-    // Agregar el botón y el contenedor de detalles como hermanos del producto
-    cartItemsList.appendChild(detailsButton);
-    cartItemsList.appendChild(detailsElement);
+            // Agregar el botón y el contenedor de detalles como hermanos del producto
+            cartItemsList.appendChild(detailsButton);
+            cartItemsList.appendChild(detailsElement);
 
-    // Sumar el subtotal al total general
-    total += subtotal;
-    });
+            // Sumar el subtotal al total general
+            total += subtotal;
+        });
 
-        // Habilitar el <select> de opciones de pago si el carrito no está vacío
+        // Habilitar el select de opciones de pago
         if (opcionesPago) {
-            opcionesPago.disabled = false; // Habilitar el select de opciones de pago
+            opcionesPago.disabled = false;
+        }
+
+        // Mostrar el botón de limpiar carrito
+        if (clearCartButton) {
+            clearCartButton.style.display = 'inline-block';
+        }
+
+        // Mostrar el contador de productos
+        if (cartCounter) {
+            cartCounter.textContent = `${cartItems.length} Producto${cartItems.length > 1 ? 's' : ''}`;
         }
     }
 
-    // MOSTRAR EL TOTAL CON FORMATO DE PUNTOS DE MIL
-    cartTotal.innerText = `Total: $${formatNumber(total)}`;
-
+    // Mostrar el total con formato
+    if (cartTotal) {
+        cartTotal.innerText = `Total: $${formatNumber(total)}`;
+    }
 
     // Guardar el total en localStorage
     localStorage.setItem('totalCarrito', total);
-    }
+}
+
+
+
 
     function toggleDetails(detailsElement, button) {
         const arrowIcon = button.querySelector('.arrow-icon');
@@ -258,14 +283,41 @@ function removeItem(index, element) {
 
 
 
+//////////////////////////////////////////////////////////////////////////////////////////
+function clearCart() {
+    // Eliminar todos los productos del carrito en localStorage
+    localStorage.removeItem('cart');
 
+    // Limpiar la lista de productos en el DOM
+    const cartItemsList = document.getElementById('cart-items-list');
+    const imageUrl = 'img/iconos/carrito.png';
+    cartItemsList.innerHTML = `
+        <img src="${imageUrl}" alt="Imagen sin productos" id="carritoimagen">
+        <p>No hay productos en tu carrito.</p>
+        <button id="volveraproductos" onclick="window.location.href='index.html'">Añadir productos</button>
+    `;
 
+    // Actualizar el contador de productos
+    const cartCounter = document.getElementById('cart-counter');
+    cartCounter.textContent = ''; // Actualizar el texto del contador
 
+    // Reiniciar el total del carrito
+    const cartTotal = document.getElementById('cart-total');
+    if (cartTotal) cartTotal.textContent = 'Total: $0';
 
+    // Deshabilitar el select de opciones de pago
+    const opcionesPago = document.getElementById('opcionesPago');
+    if (opcionesPago) {
+        opcionesPago.disabled = true;
+    }
 
-
-
-
+    // Ocultar el botón de limpiar carrito
+    const clearCartButton = document.getElementById('clear-cart-button');
+    if (clearCartButton) {
+        clearCartButton.style.display = 'none';
+    }
+}
+/////////////////////////////////////////////////////////////////////////////////////
 
 
 // FUNCIÓN PARA VERIFICAR SI EL CARRITO ESTÁ LLENO Y TAMBIÉN INSERTAR EL MÉTODO DE PAGO (ABRE EL MODAL)

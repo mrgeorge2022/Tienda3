@@ -95,10 +95,10 @@ body {
     flex-wrap: wrap;
     gap: 10px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    border-bottom: 2px solid #ff4747;
   }
   
   #encabezado {
+    margin-top: 20px;
     display: flex;
     align-items: center;
     width: 100%;
@@ -235,9 +235,9 @@ body {
     align-items: center;
     justify-content: flex-start; /* Imagen a la izquierda, texto a la derecha */
     width: 300px;
-    height: 50px;
+    height: 60px;
     border: none;
-    background: rgba(255, 255, 255, 0.5); /* Fondo blanco con opacidad */
+    background: #555; /* Fondo blanco con opacidad */
     backdrop-filter: blur(10px); /* Filtro borroso */
     -webkit-backdrop-filter: blur(10px); /* Compatibilidad con Safari */
     cursor: pointer;
@@ -257,10 +257,14 @@ body {
     background-size: cover;
     background-position: center;
     border-radius: 15px 0 0 15px; /* Bordes redondeados solo en la izquierda */
-    filter: brightness(0.9); /* Oscurece ligeramente la imagen */
-    transition: filter 0.3s ease;
     flex-shrink: 0; /* Evita que la imagen se reduzca */
+    position: relative; /* Necesario para el pseudo-elemento */
+    -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)); /* Máscara para desvanecer la imagen */
+    mask-image: linear-gradient(to right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)); /* Máscara para navegadores compatibles */
+    -webkit-mask-size: 100% 100%; /* Asegura que la máscara cubra toda la imagen */
+    mask-size: 100% 100%;
 }
+
 
 /* Texto dentro del botón */
 .category-buttons button span {
@@ -286,7 +290,7 @@ body {
 /* Responsividad para pantallas grandes */
 @media (min-width: 1024px) {
     .category-buttons {
-        grid-template-columns: repeat(2, 1fr); /* Dos columnas en pantallas grandes */
+        grid-template-columns: repeat(3, 1fr); /* Dos columnas en pantallas grandes */
     }
 
     .category-buttons button {
