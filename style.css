@@ -168,25 +168,24 @@ body {
   /* ===== BOTÓN MENÚ PRINCIPAL ===== */
   .btn-bienvenida {
     position: fixed;
+    justify-content: space-between;
     top: 15px;
     left: 20px;
     background-color: transparent;
     color: white;
     border: none;
-    border-radius: 8px;
     font-weight: bold;
     font-size: 16px;
     cursor: pointer;
-    z-index: 10000;
     transition: background 0.3s ease;
   }
 
   .btn-bienvenida img {
-    width: 100%;
+    width: 15px;
     height: 30px;
   }
 
-  
+
 /* ===== PANEL DE BIENVENIDA ===== */
 #welcome-panel {
     position: fixed;
@@ -194,22 +193,23 @@ body {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: #111;
     display: flex;
     flex-direction: column;
     align-items: center;
     z-index: 9999;
     overflow-y: auto;
-    padding: 20px;
-  }
-  
-  #welcome-panel.hidden {
+    padding: 10px;
+    backdrop-filter: blur(100px); /* Aplica el efecto borroso al fondo */
+    background-color: #00000080; /* Fondo más oscuro */
+}
+
+#welcome-panel.hidden {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-  }
+}
   
-  #welcome-panel #header {
+#welcome-panel #header {
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -218,82 +218,82 @@ body {
     background-color: transparent;
     box-shadow: none;
     border: none;
-  }
+}
   
-  #welcome-panel #encabezado {
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  
-  /* ===== BOTONES DE CATEGORÍA ===== */
-  .category-buttons {
+.category-buttons {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Dos columnas siempre */
-    gap: 16px;
-    margin-top: 20px;
-    width: 100%;
-    max-width: 1200px; /* Para mantener diseño más controlado en pantallas grandes */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Diseño flexible */
+    gap: 15px; /* Espaciado entre los botones */
+    justify-content: center; /* Centra los botones horizontalmente */
+    margin: 20px 0; /* Espaciado superior e inferior */
+}
 
-  }
-  
-  .category-buttons button {
-    position: relative;
-    width: 100%;
-    height: 90px; /* Más horizontal que antes */
-    border: none;
-    overflow: hidden;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    cursor: pointer;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+/* Estilo de los botones */
+.category-buttons button {
     display: flex;
     align-items: center;
-    justify-content: center;
-    font-size: 40px;
-    font-weight: bold;
-    color: white;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
-    border-radius: 5pX;
-  }
-  
-  .category-buttons button::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    transition: background-color 0.3s ease;
-  }
-  
-  .category-buttons button span {
-    position: relative;
-    z-index: 1;
-  }
-  
-  .category-buttons button:hover {
-    transform: scale(1.03);
-  }
-  
-  .category-buttons button:hover::before {
-    background-color: rgba(255, 255, 255, 0.5);
-  }
-  
-  /* ===== RESPONSIVE: MÓVILES ===== */
-  @media (max-width: 600px) {
-    .category-buttons {
-      grid-template-columns: 1fr; /* Solo una columna */
-    }
-  
-    .category-buttons button {
-      height: 50px; /* Más compacto para móvil */
-      font-size: 25px;
-      height: 55px;
-    }
-  }
-  
+    justify-content: flex-start; /* Imagen a la izquierda, texto a la derecha */
+    width: 300px;
+    height: 50px;
+    border: none;
+    background: rgba(255, 255, 255, 0.5); /* Fondo blanco con opacidad */
+    backdrop-filter: blur(10px); /* Filtro borroso */
+    -webkit-backdrop-filter: blur(10px); /* Compatibilidad con Safari */
+    cursor: pointer;
+    padding: 0;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+    white-space: normal; /* Permite que el texto se ajuste en varias líneas */
+    text-align: left; /* Alinea el texto a la izquierda */
+}
 
+/* Imagen dentro del botón */
+.button-image {
+    width: 40%; /* Ajusta el ancho de la imagen */
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    border-radius: 15px 0 0 15px; /* Bordes redondeados solo en la izquierda */
+    filter: brightness(0.9); /* Oscurece ligeramente la imagen */
+    transition: filter 0.3s ease;
+    flex-shrink: 0; /* Evita que la imagen se reduzca */
+}
+
+/* Texto dentro del botón */
+.category-buttons button span {
+    flex: 1;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffffff; /* Texto oscuro para contraste */
+    padding: 0 20px;
+    transition: transform 0.3s ease, color 0.3s ease;
+    white-space: nowrap; /* Evita que el texto se desborde en varias líneas */
+    overflow: hidden; /* Oculta el texto que exceda el espacio disponible */
+    text-overflow: ellipsis; /* Agrega puntos suspensivos si el texto es demasiado largo */
+}
+
+/* Responsividad para pantallas pequeñas */
+@media (max-width: 768px) {
+    .category-buttons {
+        grid-template-columns: 1fr; /* Una columna en pantallas pequeñas */
+    }
+}
+
+/* Responsividad para pantallas grandes */
+@media (min-width: 1024px) {
+    .category-buttons {
+        grid-template-columns: repeat(2, 1fr); /* Dos columnas en pantallas grandes */
+    }
+
+    .category-buttons button {
+        width: 400px; /* Botones más grandes */
+        height: 70px; /* Altura aumentada */
+    }
+}
 
 
 

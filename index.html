@@ -37,18 +37,86 @@
   
 <!-- Botones de categoría -->
 <div class="category-buttons">
-    <button style="background-image: url('img/recomendados.jpg');" onclick="filtrarYOcultar('recomendados')" >Recomendados</button>
-    <button style="background-image: url('img/productos/express.jpg');" onclick="filtrarYOcultar('perros')">Perros</button>
-    <button style="background-image: url('img/productos/LaBestia.jpg');" onclick="filtrarYOcultar('hamburguesas')">Hamburguesas</button>
-    <button style="background-image: url('img/productos/papasfrancesas.jpg');" onclick="filtrarYOcultar('acompañantes')">Acompañantes</button>
-    <button style="background-image: url('img/productos/LaSalchichera.jpg');" onclick="filtrarYOcultar('salchipapas')">Salchipapas</button>
-    <button style="background-image: url('img/productos/atrevida.jpg');" onclick="filtrarYOcultar('picadas')">Picadas</button>
-    <button style="background-image: url('img/productos/limon.jpg');" onclick="filtrarYOcultar('bebidas')">Bebidas</button>
-    <button style="background-image: url('img/productos/pizzapepperoni.jpg');" onclick="window.location.href='indexpizza.html'">Pizzas</button>
-  </div>
+    <button onclick="filtrarYOcultar('recomendados')">
+        <div class="button-image" style="background-image: url('img/recomendados.jpg');"></div>
+        <span>Recomendados</span>
+    </button>
+    <button onclick="filtrarYOcultar('perros')">
+        <div class="button-image" style="background-image: url('img/productos/express.jpg');"></div>
+        <span>Perros</span>
+    </button>
+    <button onclick="filtrarYOcultar('hamburguesas')">
+        <div class="button-image" style="background-image: url('img/productos/LaBestia.jpg');"></div>
+        <span>Hamburguesas</span>
+    </button>
+    <button onclick="filtrarYOcultar('acompañantes')">
+        <div class="button-image" style="background-image: url('img/productos/papasfrancesas.jpg');"></div>
+        <span>Acompañantes</span>
+    </button>
+    <button onclick="filtrarYOcultar('salchipapas')">
+        <div class="button-image" style="background-image: url('img/productos/LaSalchichera.jpg');"></div>
+        <span>Salchipapas</span>
+    </button>
+    <button onclick="filtrarYOcultar('picadas')">
+        <div class="button-image" style="background-image: url('img/productos/atrevida.jpg');"></div>
+        <span>Picadas</span>
+    </button>
+    <button onclick="filtrarYOcultar('bebidas')">
+        <div class="button-image" style="background-image: url('img/productos/limon.jpg');"></div>
+        <span>Bebidas</span>
+    </button>
+    <button onclick="window.location.href='indexpizza.html'">
+        <div class="button-image" style="background-image: url('img/productos/pizzapepperoni.jpg');"></div>
+        <span>Pizzas</span>
+    </button>
+</div>
   
-  
-  </div>
+<div id="redessociales">
+    <a href="https://api.whatsapp.com/message/RR4ZENOC2S25D1?autoload=1&app_absent=0">
+        <img src="img/redes/whatsapp.png" alt="Whatsapp" id="logoredes">
+    </a>
+
+    <a href="https://www.instagram.com/mr_ge0rge/">
+        <img src="img/redes/instagram.png" alt="Instagram" id="logoredes">
+    </a>
+
+    <a href="https://www.facebook.com/MISTERGE0RGE">
+        <img src="img/redes/facebook.png" alt="Facebook" id="logoredes">
+    </a>
+</div>
+
+<div id="qrcontenedor">
+    <img src="img/iconos/qrtienda.png" alt="qrtienda" id="qrtienda">
+    <p>QR tienda</p>
+</div>
+
+<div id="direcciontienda">
+    <p><strong>Sedes</strong><br>
+        Mr. George Cartagena, Bolivar<br>
+        San fernando, Cl 5, Cra 81 f 05<br>
+        <span class="telefono">(+57) 302 266 6530</span>
+</div>
+
+
+<div class="terms-container">
+    <label class="terms-label">
+        Politicas<a href="terms.html" target="_blank" class="link">términos y condiciones</a>
+    </label>
+</div>
+
+
+<div id="fotofinalcontenedor">
+    <img src="img/logo.png" alt="Mr George" id="fotofinal">
+</div>
+
+<div class="creatutienda">
+    <label class="creatutienda-label">
+        Crea tu tienda<a href="https://wa.me/573022666530?text=%C2%A1Hola!%20Quiero%20crear%20mi%20tienda"
+            target="_blank" class="link">Aquí</a>
+    </label>
+</div>
+
+</div>
   
 
 
@@ -158,50 +226,7 @@
     </div>
     </div>
 
-    <div id="redessociales">
-        <a href="https://api.whatsapp.com/message/RR4ZENOC2S25D1?autoload=1&app_absent=0">
-            <img src="img/redes/whatsapp.png" alt="Whatsapp" id="logoredes">
-        </a>
-
-        <a href="https://www.instagram.com/mr_ge0rge/">
-            <img src="img/redes/instagram.png" alt="Instagram" id="logoredes">
-        </a>
-
-        <a href="https://www.facebook.com/MISTERGE0RGE">
-            <img src="img/redes/facebook.png" alt="Facebook" id="logoredes">
-        </a>
-    </div>
-
-    <div id="qrcontenedor">
-        <img src="img/iconos/qrtienda.png" alt="qrtienda" id="qrtienda">
-        <p>QR tienda</p>
-    </div>
-
-    <div id="direcciontienda">
-        <p><strong>Sedes</strong><br>
-            Mr. George Cartagena, Bolivar<br>
-            San fernando, Cl 5, Cra 81 f 05<br>
-            <span class="telefono">(+57) 302 266 6530</span>
-    </div>
-
-
-    <div class="terms-container">
-        <label class="terms-label">
-            Politicas<a href="terms.html" target="_blank" class="link">términos y condiciones</a>
-        </label>
-    </div>
-
-
-    <div id="fotofinalcontenedor">
-        <img src="img/logo.png" alt="Mr George" id="fotofinal">
-    </div>
-
-    <div class="creatutienda">
-        <label class="creatutienda-label">
-            Crea tu tienda<a href="https://wa.me/573022666530?text=%C2%A1Hola!%20Quiero%20crear%20mi%20tienda"
-                target="_blank" class="link">aquí</a>
-        </label>
-    </div>
+    
 
     <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
