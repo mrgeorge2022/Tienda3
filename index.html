@@ -37,9 +37,10 @@
   
 <!-- Botones de categoría -->
 <div class="category-buttons">
-    <button onclick="filtrarYOcultar('recomendados')">
-        <div class="button-image" style="background-image: url('img/recomendados.jpg');"></div>
-        <span>Recomendados</span>
+    <button onclick="filtrarYOcultar('recomendados')" id="recomendadosbutton">
+        <!--<div class="button-image" style="background-image: url('img/recomendados.jpg');"></div>-->
+        <span>★ RECOMENDADOS ★</span>
+
     </button>
     <button onclick="filtrarYOcultar('perros')">
         <div class="button-image" style="background-image: url('img/productos/express.jpg');"></div>
@@ -49,9 +50,9 @@
         <div class="button-image" style="background-image: url('img/productos/LaBestia.jpg');"></div>
         <span>Hamburguesas</span>
     </button>
-    <button onclick="window.location.href='indexpizza.html'">
+    <!--<button onclick="window.location.href='indexpizza.html'">
         <div class="button-image" style="background-image: url('img/productos/pizzapepperoni.jpg');"></div>
-        <span>Pizzas</span>
+        <span>Pizzas</span>-->
     </button>
     <button onclick="filtrarYOcultar('acompañantes')">
         <div class="button-image" style="background-image: url('img/productos/papasfrancesas.jpg');"></div>
@@ -100,8 +101,12 @@
 
 
 <div class="terms-container">
+    <p>Políticas</p>
     <label class="terms-label">
-        Politicas<a href="terms.html" target="_blank" class="link">términos y condiciones</a>
+        <a href="terms.html" target="_blank" class="link">Términos y Condiciones</a>
+    </label>
+    <label class="Privacity-label">
+        <a href="privacity.html" target="_blank" class="link">Políticas de Privacidad</a>
     </label>
 </div>
 
@@ -110,7 +115,7 @@
     <img src="img/logo.png" alt="Mr George" id="fotofinal">
 </div>
 
-<div class="creatutienda">
+<div class="creatutienda" id="creatutiendaclon">
     <label class="creatutienda-label">
         Crea tu tienda<a href="https://wa.me/573022666530?text=%C2%A1Hola!%20Quiero%20crear%20mi%20tienda"
             target="_blank" class="link">Aquí</a>
@@ -145,49 +150,6 @@
 
 
 
-
-
-
-    
-    <!-- Menú de navegación 
-    <div id="navegadorylista">
-        <div class="dropdown-container">
-            <a href="#" class="custom-dropdown-toggle" onclick="toggleCategoryDropdown(event)"><span>▼</span></a>
-            <ul class="custom-dropdown-menu">
-                <li><a id="recomendadoslist" href="#" onclick="activateCategoryLink('recomendados')">¡Recomendados!</a></li>
-                <li><a href="#" onclick="activateCategoryLink('todos')">Todos</a></li>
-                <li><a href="#" onclick="activateCategoryLink('perros')">Perros</a></li>
-                <li><a href="#" onclick="activateCategoryLink('hamburguesas')">Hamburguesas</a></li>
-                <li><a href="#" onclick="activateCategoryLink('acompañantes')">Acompañantes</a></li>
-                <li><a href="#" onclick="activateCategoryLink('salchipapas')">Salchipapas</a></li>
-                <li><a href="#" onclick="activateCategoryLink('picadas')">Picadas</a></li>
-                <li><a href="#" onclick="activateCategoryLink('bebidas')">Bebidas</a></li>
-                <li><a href="#" onclick="activateCategoryLink('combos')">Combos</a></li>
-                <li onclick="window.location.href='indexpizza.html'">
-                    <span class="tiendaredirigirlista">Ir a Mr. George Pizzas</span>
-                </li>
-            </ul>
-        </div>
-
-        <nav>
-            <ul>
-                <li><a id="recomendados" href="#" onclick="displayProducts('recomendados')">¡Recomendados!</a></li>
-                <li><a href="#" onclick="displayProducts('todos')">Todos</a></li>
-                <li><a href="#" onclick="displayProducts('perros')">Perros</a></li>
-                <li><a href="#" onclick="displayProducts('hamburguesas')">Hamburguesas</a></li>
-                <li><a href="#" onclick="displayProducts('acompañantes')">Acompañantes</a></li>
-                <li><a href="#" onclick="displayProducts('salchipapas')">Salchipapas</a></li>
-                <li><a href="#" onclick="displayProducts('picadas')">Picadas</a></li>
-                <li><a href="#" onclick="displayProducts('bebidas')">Bebidas</a></li>
-                <li><a href="#" onclick="displayProducts('combos')">Combos</a></li>
-
-                <li onclick="window.location.href='indexpizza.html'">
-                     <span class="tiendaredirigirpizzanav">Ir a Mr. George Pizzas</span>
-                </li>
-
-            </ul>
-        </nav>-->
-
     </div>
 
     <section id="product-list">
@@ -202,11 +164,6 @@
             <img id="modal-product-image" src="" alt="Imagen del Producto" class="modal-product-image">
             <p id="modal-product-description"></p>
 
-                <!-- Opción para agregar papas (solo para productos con id 1, 2, 3) -->
-                <div id="add-fries-container" style="display: none;">
-                    <label for="add-fries">¿Deseas agregar papas?</label>
-                    <input type="checkbox" id="add-fries" name="add-fries">
-                </div>
 
             <p><strong>$<span id="modal-product-price"></span></strong></p>
             <textarea id="modal-product-instructions" placeholder="Añade tus indicaciones..."></textarea>
@@ -227,8 +184,34 @@
     </div>
     </div>
 
-    
 
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-logo">
+                <img src="img/logo.png" alt="Mr. George Logo">
+            </div>
+            <div id="redesclon"></div>
+        </div>
+    </footer>
+
+    <div id="creatutiendaclonado"></div>
+
+
+
+    <script>
+        // Clonar el div con redes sociales
+        const redes = document.getElementById("redessociales");
+        const clon = redes.cloneNode(true); // true = clonar también los hijos
+        document.getElementById("redesclon").appendChild(clon);
+
+        // Clonar "Crea tu tienda"
+        const tienda = document.getElementById("creatutiendaclon");
+        const clonTienda = tienda.cloneNode(true);
+        document.getElementById("creatutiendaclonado").appendChild(clonTienda);
+    </script>
+
+      
     <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
 
