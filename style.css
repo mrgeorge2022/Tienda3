@@ -298,31 +298,29 @@ body {
 /* Responsividad para pantallas pequeñas */
 @media (max-width: 768px) {
     .category-buttons {
-        grid-template-columns: 1fr; /* Una columna en pantallas pequeñas */
+        display: flex;
+        flex-wrap: wrap;
+
     }
 }
 
-/* Responsividad para pantallas grandes */
 @media (min-width: 1024px) {
     .category-buttons {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr); /* Tres columnas en pantallas grandes */
-        gap: 15px; /* Espaciado entre los botones */
-        justify-content: center; /* Centra los botones horizontalmente */
-        justify-items: center; /* Centra los elementos dentro de sus celdas */
-    }
-
-    /* Centrar el último elemento en una fila incompleta */
-    .category-buttons > *:nth-last-child(1):nth-child(3n + 1) {
-        grid-column: span 3; /* Hace que el último elemento ocupe toda la fila */
-        justify-self: center; /* Centra el elemento */
+        display: flex;
+        flex-wrap: wrap;
+        padding-left: 200px;
+        padding-right: 200px;
+        gap: 15px;
+        justify-content: center;
     }
 
     .category-buttons button {
-        width: 400px; /* Botones más grandes */
-        height: 70px; /* Altura aumentada */
+        width: 400px;
+        height: 70px;
+        flex: 0 0 auto;
     }
 }
+
 
 
 

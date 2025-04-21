@@ -285,36 +285,41 @@ function removeItem(index, element) {
 
 //////////////////////////////////////////////////////////////////////////////////////////
 function clearCart() {
-    // Eliminar todos los productos del carrito en localStorage
-    localStorage.removeItem('cart');
+    // Mostrar una alerta de confirmación al usuario
+    const confirmClear = confirm("¿Seguro que deseas vaciar el carrito?");
 
-    // Limpiar la lista de productos en el DOM
-    const cartItemsList = document.getElementById('cart-items-list');
-    const imageUrl = 'img/iconos/carrito.png';
-    cartItemsList.innerHTML = `
-        <img src="${imageUrl}" alt="Imagen sin productos" id="carritoimagen">
-        <p>No hay productos en tu carrito.</p>
-        <button id="volveraproductos" onclick="window.location.href='index.html'">Añadir productos</button>
-    `;
+    if (confirmClear) {
+        // Eliminar todos los productos del carrito en localStorage
+        localStorage.removeItem('cart');
 
-    // Actualizar el contador de productos
-    const cartCounter = document.getElementById('cart-counter');
-    cartCounter.textContent = ''; // Actualizar el texto del contador
+        // Limpiar la lista de productos en el DOM
+        const cartItemsList = document.getElementById('cart-items-list');
+        const imageUrl = 'img/iconos/carrito.png';
+        cartItemsList.innerHTML = `
+            <img src="${imageUrl}" alt="Imagen sin productos" id="carritoimagen">
+            <p>No hay productos en tu carrito.</p>
+            <button id="volveraproductos" onclick="window.location.href='index.html'">Añadir productos</button>
+        `;
 
-    // Reiniciar el total del carrito
-    const cartTotal = document.getElementById('cart-total');
-    if (cartTotal) cartTotal.textContent = 'Total: $0';
+        // Actualizar el contador de productos
+        const cartCounter = document.getElementById('cart-counter');
+        cartCounter.textContent = ''; // Actualizar el texto del contador
 
-    // Deshabilitar el select de opciones de pago
-    const opcionesPago = document.getElementById('opcionesPago');
-    if (opcionesPago) {
-        opcionesPago.disabled = true;
-    }
+        // Reiniciar el total del carrito
+        const cartTotal = document.getElementById('cart-total');
+        if (cartTotal) cartTotal.textContent = 'Total: $0';
 
-    // Ocultar el botón de limpiar carrito
-    const clearCartButton = document.getElementById('clear-cart-button');
-    if (clearCartButton) {
-        clearCartButton.style.display = 'none';
+        // Deshabilitar el select de opciones de pago
+        const opcionesPago = document.getElementById('opcionesPago');
+        if (opcionesPago) {
+            opcionesPago.disabled = true;
+        }
+
+        // Ocultar el botón de limpiar carrito
+        const clearCartButton = document.getElementById('clear-cart-button');
+        if (clearCartButton) {
+            clearCartButton.style.display = 'none';
+        }
     }
 }
 /////////////////////////////////////////////////////////////////////////////////////
