@@ -181,7 +181,7 @@ body {
   }
 
   .btn-bienvenida img {
-    width: 15px;
+    width: auto;
     height: 30px;
   }
 
@@ -632,18 +632,16 @@ body {
 /* Estilos para la notificación */
 .notification {
     position: absolute;
-    top: 10px;
-    left: 10px;
     background-color: #333; /* Color de fondo */
     color: white;
     padding: 5px 10px;
     border-radius: 20px;
-    font-size: 12px;
+    font-size: 15px;
     font-weight: bold;
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease, visibility 0.3s ease;
-    margin-right: 30px;
+    margin-right: 32px;
 }
 
 .notification.show {
@@ -1000,26 +998,35 @@ color: #333;
 #product-list {
     display: flex;
     flex-wrap: wrap; /* Permite que los elementos de producto se envuelvan en varias filas */
-    gap: 20px; /* Espacio entre los productos */
+    gap: 15px; /* Espacio entre los productos */
     justify-content: center; /* Centra los productos en el contenedor */
-    padding: 20px; /* Espaciado alrededor del contenedor */
+    padding: 10px; /* Espaciado alrededor del contenedor */
     margin-top: 60px;
 }
 
-/* Estilos para cada elemento de producto */
-.product-item {
-    background-color: #333; /* Fondo blanco para los productos */
-    border-radius: 10px; /* Bordes redondeados */
+
+#contenedorvacio {
+    position: relative; /* Esto es necesario para que el botón flotante esté dentro de este contenedor */
+    width: 300px; /* Ajusta el ancho según el tamaño de tus productos */
+    height: 330px; /* Ajusta la altura según el tamaño de tus productos */
+    margin-bottom: 0; /* Espacio entre productos */
+    background-color: transparent; /* Fondo blanco o el color que prefieras */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
-    overflow: hidden; /* Asegura que los bordes se mantengan redondeados */
-    width: 320px; /* Ancho fijo para los productos */
-    padding: 15px; /* Espaciado interno */
-    text-align: center; /* Centra el texto dentro del producto */
-    transition: transform 0.2s ease, box-shadow 0.3s ease; /* Animación suave */
+    transition: transform 0.2s ease, box-shadow 0.3s ease, filter 0.3s ease
+}
+
+/* Estilos para el contenedor de cada producto */
+#product-item {
+    background-color: #444;
+    padding: 10px; /* Espaciado interno */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra suave */
+    width: 300px; /* Ajusta el ancho según el tamaño de tus productos */
+    height: 330px; /* Ajusta la altura según el tamaño de tus productos */
 }
 
 /* Efecto de hover en cada producto */
-.product-item:hover {
+#contenedorvacio:hover {
     transform: translateY(-5px); /* Levanta el producto ligeramente */
 }
 
@@ -1078,17 +1085,29 @@ color: #333;
 }
 
 
+/* Estilo para el contenedor donde está el botón, sin generar espacio */
+#botondeagregarcontendor {
+    display: flex; /* Establece un contenedor flex */
+    justify-content: flex-end; /* Alinea los elementos al final (a la derecha) */
+}
+
+
 /* Estilo para el botón de ordenar */
 .product-item button {
-    background-color: #ffc400; /* Fondo naranja */
-    color: #000000; /* Texto blanco */
+    position: absolute; /* El botón se posiciona de forma absoluta dentro de #contenedorvacio */
+    bottom: -10px;
+    right: -10px;
+    background-color: #ffc400; /* Fondo del botón en color naranja */
+    box-shadow: 0 4px 12px rgba(255, 196, 0, 0.4); /* Sombra suave */
+    color: #000000; /* Texto negro */
     border: none;
-    border-radius: 5px;
+    border-radius: 50%; /* Hace el botón redondo */
     padding: 10px 15px;
-    font-size: 14px;
+    font-size: 20px; /* Tamaño del texto */
     font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.3s ease; /* Efecto suave al hacer hover */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Animación suave */
+    z-index: 1000; /* Asegura que el botón esté por encima de otros elementos */
 }
 
 

@@ -75,14 +75,15 @@ body {
 
 /* Estilo para el botón de "¡Finalizar compra!" */
 #btnFinalizar {
-    background-color: #4CAF50; /* Verde */
+    background: linear-gradient(135deg, #4CAF50, #66BB6A); /* Degradado verde */
     color: white; /* Texto blanco */
     font-size: 16px;
     padding: 12px 24px;
     border: none;
-    border-radius: 5px;
+    border-radius: 30px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
     display: none; /* Se oculta inicialmente */
 }
 
@@ -136,21 +137,20 @@ body {
 
 /* Estilo para la lista de sugerencias */
 #sugerencias {
-
-    list-style-type: none; /* Eliminar los puntos de la lista */
-    padding: 0; /* Eliminar el padding */
-    margin: 0; /* Eliminar el margen */
-    background-color: #444; /* Fondo oscuro */
-    color: #fff; /* Texto blanco */
-    border: 1px solid #ccc; /* Borde gris */
-    border-radius: 5px; /* Bordes redondeados */
-    max-height: 200px; /* Altura máxima */
-    overflow: hidden; /* Ocultar el contenido que se desborda */
-    position: absolute; /* Posición absoluta */
-    top: 40PX;
-    width: calc(100% - 20px); /* Ancho igual al del input menos el padding */
-    z-index: 1000; /* Asegurar que esté por encima de otros elementos */
-    display: none; /* Ocultar por defecto */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: #444;
+    color: #fff;
+    list-style: none;
+    padding: 0;
+    margin-top: 5px;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    max-height: 200px;
+    overflow-y: auto;
 }
 
 /* Estilo para los elementos de la lista de sugerencias */
@@ -222,10 +222,32 @@ h3 {
 
 #direccion-container {
     display: flex;
-    margin: 5px;
-    text-align: center;
     justify-content: center;
+    align-items: center;
+    padding: 5px;
 }
+
+#miubucacion {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: linear-gradient(135deg, #4285F4, #73b4f9);
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#miubucacion img {
+    width: 20px;
+    height: 20px;
+    filter: brightness(0) invert(1); /* Hace el icono blanco si es SVG oscuro */
+}
+
 
 
 
@@ -262,7 +284,7 @@ input[type="text"] {
 
 /* Estilo para la imagen dentro del input */
 .input-container input {
-    border-radius: 5px; /* Bordes redondeados */
+    border-radius: 30px; /* Bordes redondeados */
     padding: 12px; /* Espaciado interno */
     font-size: 16px; /* Tamaño del texto */
     box-sizing: border-box; /* Asegura que el padding no desborde */
@@ -272,8 +294,8 @@ input[type="text"] {
 
 /* Estilo para la imagen del ícono dentro del input */
 .input-container img {
-    width: 20px; /* Ancho de la imagen */
-    height: 20px; /* Alto de la imagen */
+    width: 25px; /* Ancho de la imagen */
+    height: 25px; /* Alto de la imagen */
     position: absolute; /* Posiciona la imagen dentro del input */
     right: 10px; /* Coloca la imagen a la derecha del input */
     top: 50%; /* Centra verticalmente la imagen */
@@ -318,6 +340,7 @@ button {
     border: none;
     border-radius: 5px;
     background-color: #ffc400;
+    box-shadow: 0 4px 12px #ffc4004d;
     color: #000;
     cursor: pointer;
     margin: 5px;
@@ -329,22 +352,34 @@ button:hover {
 }
 
 #btnListo {
-    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(135deg, #4CAF50, #81C784);
+    color: white;
     border: none;
-    border-radius: 5px;
-    background-color: #ffc400;
-    color: #000;
-    cursor: pointer;
-    margin: 5px;
+    padding: 14px 28px;
+    border-radius: 50px;
     font-size: 16px;
     font-weight: bold;
-    transition: background-color 0.3s, transform 0.2s;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4);
+    transition: all 0.3s ease;
+    letter-spacing: 0.5px;
 }
 
 #btnListo:hover {
-    background-color: #009708;
-    color: #fff;
+    transform: scale(1.05);
+    box-shadow: 0 6px 25px rgba(76, 175, 80, 0.6);
+    background: linear-gradient(135deg, #43A047, #66BB6A);
 }
+
+#btnListo img {
+    width: 20px;
+    height: 20px;
+    filter: brightness(0) invert(1); /* Hace el ícono blanco si es oscuro */
+}
+
 
 #map {
     border-radius: 8px;
@@ -399,7 +434,7 @@ button:hover {
     padding: 12px 15px;
     margin-top: 10px;
     border: 1px solid #ccc;
-    border-radius: 8px;
+    border-radius: 30px;
     font-size: 16px;
     box-sizing: border-box; /* Asegura que el padding no afecte el ancho */
 }
@@ -462,7 +497,7 @@ input[type="number"]::-webkit-inner-spin-button {
     padding: 12px 24px;
     font-size: 18px;
     font-weight: bold;
-    border-radius: 8px;
+    border-radius: 30px;
     cursor: pointer;
     transition: background-color 0.3s ease;
     width: 100%;

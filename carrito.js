@@ -174,7 +174,7 @@ function loadCart() {
                     <p><strong>Indicaciones: </strong>${product.instructions || ''}</p>
                 </div>
                 <div class="action-container">
-                    <img id="basura" src="img/iconos/basura.png" alt="Eliminar" onclick="removeItem(${index}, this)">
+                    <img id="basura" src="img/iconos/basura.svg" alt="Eliminar" onclick="removeItem(${index}, this)">
                     <div class="subtotal-popup">
                         <p>$${formatNumber(subtotal)}</p>
                     </div>

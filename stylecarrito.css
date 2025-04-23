@@ -147,7 +147,8 @@ header nav button:hover {
 
 /* Estilo para el botón de limpiar carrito */
 #clear-cart-button {
-    background-color: transparent; /* Rojo claro */
+    background-color: transparent;
+    box-shadow: none;
     color: #333; /* Texto blanco */
     border: none;
     border-radius: 5px; /* Bordes redondeados */
@@ -212,7 +213,7 @@ header nav button:hover {
     display: flex;
     padding: 0px;
     justify-content: space-between;
-    margin-top: 30px;
+    margin-top: 15px;
 }
 
 
@@ -250,6 +251,7 @@ header nav button:hover {
 .toggle-details-btn {
     display: flex;
     background-color: transparent;
+    box-shadow: none;
     color: #000000;
     padding: 5px 10px;
     cursor: pointer;
@@ -260,9 +262,12 @@ header nav button:hover {
     font-size: 13px;
     font-weight: lighter;
     transition: background-color 0.3s, transform 0.3s; /* Transiciones suaves */
+    align-items: center;
 }
 
 .arrow-icon {
+    width: auto;
+    height: 10px;
     margin-left: 10px;
     display: inline-block;
     transition: transform 0.3s ease-in-out; /* Suaviza la animación */
@@ -281,6 +286,7 @@ header nav button:hover {
     width: 70%;
     font-size: 15px;
     background-color: #00000070;
+    box-shadow: none;
     
 }  
 
@@ -296,8 +302,7 @@ header nav button:hover {
 /* Botón de basura */
 .action-container #basura {
     cursor: pointer;
-    width: 20px; /* Ajusta el tamaño del icono */
-    height: 20px;
+
     margin-bottom: auto; /* Empuja el subtotal hacia la parte inferior */
 }
 
@@ -378,7 +383,7 @@ h4{
     padding: 8px 5px; /* Espaciado interno */
     font-size: 16px; /* Tamaño de fuente */
     border: 2px solid #b9b9b9; /* Borde amarillo */
-    border-radius: 5px; /* Bordes redondeados */
+    border-radius: 20px; /* Bordes redondeados */
     background-color: #ffffff; 
     color: #000000; /* Color de texto */
     transition: border-color 0.3s, background-color 0.3s; /* Transiciones suaves */
@@ -442,17 +447,49 @@ h4{
 
 button {
     background-color: #ffc400;
+    box-shadow: 0 4px 12px #ffc4004d;
     color: white;
     border: none;
     padding: 12px 24px;
     font-size: 18px;
     font-weight: bold;
-    border-radius: 8px;
+    border-radius: 30px;
     cursor: pointer;
     transition: background-color 0.3s ease;
     width: 100%;
     margin: 15px 0;
 }
+
+#btnConfirmar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #FFC400, #FFB400); /* Amarillo cálido */
+    color: white;
+    border: none;
+    padding: 14px 32px;
+    border-radius: 50px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(255, 196, 0, 0.4);
+    transition: all 0.3s ease;
+    letter-spacing: 0.5px;
+}
+
+#btnConfirmar img {
+    width: 24px;  /* Tamaño adecuado para el ícono */
+    height: 24px;
+    margin-right: 10px;  /* Espacio entre el ícono y el texto */
+    filter: brightness(0) invert(1);  /* Asegura que el ícono sea blanco si es oscuro */
+}
+
+#btnConfirmar:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 30px rgba(255, 196, 0, 0.6);
+    background: linear-gradient(135deg, #FFB400, #FF9F00);
+}
+
 
 
 
@@ -486,26 +523,8 @@ button {
 }
 
 
-#motodomicilio{
-    width: 20px;
-    height: 20px;
-    vertical-align: middle;
-    filter: invert();
-
-}
 
 
-#botoncancelar {
-    margin-top: 30px;
-    width: 130px;
-    text-align: center;
-    font-size: 15px;
-    background-color: #00000070;
-}
-
-#botoncancelar:hover {
-    background-color: #ff0000;
-}
 
 .modal-content h2 {
     font-size: 26px;
@@ -514,6 +533,20 @@ button {
     font-weight: bold;
 }
 
+#botoncancelar {
+    margin-top: 30px;
+    width: 130px;
+    text-align: center;
+    font-size: 15px;
+    background-color: #00000070;
+    box-shadow: none;
+}
+
+#botoncancelar:hover {
+    background-color: #ff0000;
+}
+
+
 .modal button {
     margin: 5px;
     width: 90%;
@@ -521,13 +554,13 @@ button {
     background-color: #ffc400;
     color: white;
     border: none;
-    border-radius: 8px;
+    border-radius: 30px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .modal button:hover {
-    background-color: #c29502;
+    transform: scale(1.03);
 }
 
 /* Animación de aparición del modal */
@@ -590,7 +623,7 @@ button {
     padding: 12px 15px;
     margin-top: 10px;
     border: 1px solid #ccc;
-    border-radius: 8px;
+    border-radius: 30px;
     font-size: 16px;
     box-sizing: border-box; /* Asegura que el padding no afecte el ancho */
 }
@@ -640,14 +673,15 @@ input[type="number"]::-webkit-inner-spin-button {
 
 /* Estilo para el botón de "¡Finalizar compra!" */
 #btnFinalizar {
-    background-color: #4CAF50; /* Verde */
+    background: linear-gradient(135deg, #4CAF50, #66BB6A); /* Degradado verde */
     color: white; /* Texto blanco */
     font-size: 16px;
     padding: 12px 24px;
     border: none;
-    border-radius: 5px;
+    border-radius: 30px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
     display: none; /* Se oculta inicialmente */
 }
 
