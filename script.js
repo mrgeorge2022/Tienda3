@@ -393,7 +393,7 @@ let cart = JSON.parse(localStorage.getItem('cart')) || [];
   </div>
 
   <div id="botondeagregarcontendor">
-    <button onclick="event.stopPropagation(); openModal(${product.id})">+</button>
+    <button onclick="event.stopPropagation(); openModal(${product.id})"><img src="img/iconos/add.svg" alt="add" id="add"></button>
  </div>
 </div>
 

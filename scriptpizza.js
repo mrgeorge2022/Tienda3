@@ -256,14 +256,18 @@ function displayProducts(category = '', searchQuery = '') {
 
 
 productElement.innerHTML = `
-  <img src="${product.image}" alt="${product.name}" class="product-image">
-  <h3>${product.name}</h3>
-  <p>${product.description}</p>
-  <div id="contenedorcontadorcarrito">
-    <button onclick="event.stopPropagation(); openModal(${product.id})">
-      Ordenar
-    </button>
+<div id="contenedorvacio">
+  <div id="product-item">
+    <img src="${product.image}" alt="${product.name}" class="product-image">
+    <h3>${product.name}</h3>
+    <p>${product.description}</p>
   </div>
+
+  <div id="botondeagregarcontendor">
+    <button onclick="event.stopPropagation(); openModal(${product.id})"><img src="img/iconos/add.svg" alt="add" id="add"></button>
+ </div>
+</div>
+
 `;
 
 // Agregar el producto al contenedor de la lista
@@ -738,13 +742,13 @@ function validateQuantityInput() {
 
 
 const horariosTienda = [
-  { dia: 0, horaApertura: 18, horaCierre: 24 },  // Domingo
-  { dia: 1, horaApertura: 18, horaCierre:24 },  // Lunes 
-  { dia: 2, horaApertura: 18, horaCierre: 24 },  // Martes
-  { dia: 3, horaApertura: null, horaCierre: null},  // Miércoles - cerrdado
-  { dia: 4, horaApertura: 18, horaCierre: 24 },  // Jueves 
-  { dia: 5, horaApertura: 18, horaCierre: 24 },  // Viernes
-  { dia: 6, horaApertura: 18, horaCierre: 24 },  // Sábado
+  { dia: 0, horaApertura: 1, horaCierre: 24 },  // Domingo
+  { dia: 1, horaApertura: 1, horaCierre:24 },  // Lunes 
+  { dia: 2, horaApertura: 1, horaCierre: 24 },  // Martes
+  { dia: 3, horaApertura: 1, horaCierre: 24},  // Miércoles - cerrdado
+  { dia: 4, horaApertura: 1, horaCierre: 24 },  // Jueves 
+  { dia: 5, horaApertura: 1, horaCierre: 24 },  // Viernes
+  { dia: 6, horaApertura: 1, horaCierre: 24 },  // Sábado
 ];
 
 // FUNCIÓN PARA VERIFICAR SI LA TIENDA ESTÁ ABIERTA
