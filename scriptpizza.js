@@ -253,7 +253,9 @@ function displayProducts(category = '', searchQuery = '') {
     productElement.classList.add('product-item');
     productElement.id = `product-${product.id}`;
 
-
+    productElement.onclick = function() {
+      openModal(product.id); // Llama a la función openModal con el ID del producto
+  };
 
 productElement.innerHTML = `
 <div id="contenedorvacio">
@@ -323,7 +325,8 @@ function openModal(productId) {
         { name: 'Champiñones', price: 4500 },
         { name: 'Tocineta', price: 7000 },
         { name: 'Pollo', price: 6500 },
-        { name: 'Vegetales', price: 3000 }
+        { name: 'Vegetales', price: 3000 },
+
       ],
       checkboxOptions: [
         { name: 'Borde Queso', price: 10000 },

@@ -1102,26 +1102,25 @@ color: #333;
 /* Estilo para el botón de ordenar */
 .product-item button {
     position: absolute;
-    width: 40px;
-    height: 40px;
+    width: 50px; /* Le subí a 50px para que el padding no deforme el círculo */
+    aspect-ratio: 1 / 1;
     bottom: -10px;
     right: -10px;
     background-color: #ffc400;
     box-shadow: 0 4px 12px rgba(255, 196, 0, 0.4);
     border: none;
     border-radius: 50%;
-    padding: 10px 15px;
     font-size: 20px;
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease;
-    z-index: 1000;
 
-    /* Flex para centrar la imagen */
+    /* Flex para centrar el contenido */
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
 
 
 
